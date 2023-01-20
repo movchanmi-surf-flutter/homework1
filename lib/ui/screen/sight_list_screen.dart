@@ -10,35 +10,43 @@ class SightListScreen extends StatefulWidget {
 }
 
 class _SightListScreenState extends State<SightListScreen> {
-  TextStyle _textStyle({required Color textColor}) => TextStyle(
-        fontFamily: 'Roboto',
-        fontSize: 32,
-        fontWeight: FontWeight.w700,
-        color: textColor,
-      );
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: Colors.white,
         // resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          shadowColor: Colors.transparent,
-          centerTitle: false,
-          toolbarHeight: 72,
-          title: Text(
-            'Список\nинтересных мест',
-            style: _textStyle(
-              textColor: const Color(0xFF252849),
-            ),
-          ),
-        ),
+        appBar: const MyAppBar(),
         body: SafeArea(
           bottom: false,
           minimum: const EdgeInsets.only(left: 16,right: 16,top: 16),
           child: ListView.separated(
               itemCount: mocks.length,
-              itemBuilder:(_,index)=>SightCard(sight: mocks[index]),
+              itemBuilder:(_,index)=>MySightCard(sight: mocks[index]),
             separatorBuilder: (_,index)=>const SizedBox(height: 16,),),
         ),
       );
+}
+
+class MyAppBar extends StatelessWidget implements PreferredSizeWidget{
+  const MyAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context)=>Container(
+    constraints: BoxConstraints.tightFor(
+      height: preferredSize.height
+    ),
+    padding: const EdgeInsets.only(left: 16,top: 40),
+    child: const Text(
+      'Список\nинтересных мест',
+      style: TextStyle(
+        fontFamily: 'Roboto',
+        fontSize: 32,
+        fontWeight: FontWeight.w700,
+        color: Color(0xFF252849),
+      ),
+    ),
+  );
+
+  @override
+  Size get preferredSize => const Size(double.infinity, 136);
+
 }

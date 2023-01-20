@@ -1,9 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/domain/sight.dart';
-import 'package:places/generated/assets.dart';
 
 class SightDetails extends StatefulWidget {
   const SightDetails({Key? key, required this.sight}) : super(key: key);

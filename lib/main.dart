@@ -1,7 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:places/mocks.dart';
-import 'package:places/ui/screen/sight_details.dart';
 import 'package:places/ui/screen/sight_list_screen.dart';
 
 void main() {
@@ -11,9 +8,9 @@ class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context)=>MaterialApp(
+  Widget build(BuildContext context)=>const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: SightDetails(sight: mocks.first),
+    home: SightListScreen(),
     title: 'Places',
   );
 }
