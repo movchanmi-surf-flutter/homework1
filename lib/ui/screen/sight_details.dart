@@ -21,13 +21,25 @@ class _SightDetailsState extends State<SightDetails> {
               Image.network(
                 widget.sight.url,
                 height: 360,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.black,
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                            loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  }
               ),
               Positioned(
                 top: 36,
                 left: 16,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: ()=>Navigator.pop(context),
                   child: Container(
                     width: 32,
                     height: 32,
