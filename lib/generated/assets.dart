@@ -3,8 +3,11 @@ class Assets {
   Assets._();
 
   static const String imagesCalendar = 'assets/images/calendar.png';
+  static const String imagesClear = 'assets/images/clear.png';
   static const String imagesHeart = 'assets/images/heart.png';
+  static const String imagesHeartFilled = 'assets/images/heart_filled.png';
   static const String imagesRoute = 'assets/images/route.png';
+  static const String imagesShare = 'assets/images/share.png';
   static const String robotoLICENSE = 'assets/fonts/Roboto/LICENSE.txt';
   static const String robotoRobotoBlack = 'assets/fonts/Roboto/Roboto-Black.ttf';
   static const String robotoRobotoBlackItalic = 'assets/fonts/Roboto/Roboto-BlackItalic.ttf';
