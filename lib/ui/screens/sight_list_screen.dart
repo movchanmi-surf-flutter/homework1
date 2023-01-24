@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/mocks.dart';
-import 'package:places/ui/screen/sight_card.dart';
+import 'package:places/ui/screens/sight_card.dart';
 
 class SightListScreen extends StatefulWidget {
   const SightListScreen({Key? key}) : super(key: key);
@@ -12,7 +12,6 @@ class SightListScreen extends StatefulWidget {
 class _SightListScreenState extends State<SightListScreen> {
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: Colors.white,
         // resizeToAvoidBottomInset: false,
         appBar: const MyAppBar(),
         body: SafeArea(
@@ -36,14 +35,9 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) => Container(
         constraints: BoxConstraints.tightFor(height: preferredSize.height),
         padding: const EdgeInsets.only(left: 16, top: 40),
-        child: const Text(
+        child: Text(
           'Список\nинтересных мест',
-          style: TextStyle(
-            fontFamily: 'Roboto',
-            fontSize: 32,
-            fontWeight: FontWeight.w700,
-            color: Color(0xFF252849),
-          ),
+          style: Theme.of(context).textTheme.headline1
         ),
       );
 

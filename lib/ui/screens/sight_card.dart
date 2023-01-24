@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/generated/assets.dart';
-import 'package:places/ui/screen/sight_details.dart';
+import 'package:places/ui/screens/sight_details.dart';
 
 class SightCard extends StatelessWidget {
   const SightCard({Key? key, required this.sight}) : super(key: key);
@@ -72,8 +72,8 @@ class SightCard extends StatelessWidget {
                       child: Container(
                         constraints: const BoxConstraints(
                             minHeight: 92, minWidth: double.infinity),
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFF5F5F5),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).backgroundColor,
                         ),
                         padding: const EdgeInsets.all(16),
                         child: Column(
@@ -88,11 +88,7 @@ class SightCard extends StatelessWidget {
                               child: RichText(
                                 text: TextSpan(
                                   text: sight.name,
-                                  style: const TextStyle(
-                                    color: Color(0xFF3B3E58),
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                  ),
+                                  style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: 16),
                                 ),
                               ),
                             ),
@@ -204,8 +200,8 @@ class VisitCard extends StatelessWidget {
                       child: Container(
                         constraints: const BoxConstraints(
                             minHeight: 92, minWidth: double.infinity),
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFF5F5F5),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).backgroundColor,
                         ),
                         padding: const EdgeInsets.all(16),
                         child: Column(
@@ -220,8 +216,8 @@ class VisitCard extends StatelessWidget {
                               child: RichText(
                                 text: TextSpan(
                                   text: sight.name,
-                                  style: const TextStyle(
-                                    color: Color(0xFF3B3E58),
+                                  style: TextStyle(
+                                    color: Theme.of(context).iconTheme.color,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 16,
                                   ),

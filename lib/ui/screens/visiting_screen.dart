@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/mocks.dart';
-import 'package:places/ui/screen/sight_card.dart';
+import 'package:places/ui/screens/sight_card.dart';
 
 class VisitingScreen extends StatefulWidget {
   const VisitingScreen({Key? key}) : super(key: key);
@@ -17,26 +17,13 @@ class _VisitingScreenState extends State<VisitingScreen> with TickerProviderStat
     child: Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.white,
-        title: const Text(
+        title: Text(
           'Избранное',
-          style: TextStyle(
-            color: Color(0xFF252849),
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.w600,
-            fontSize: 18,
-          ),
+          style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 18),
         ),
-        bottom: const TabBar(
-          indicatorColor: Color(0xFF3B3E5B),
-          labelColor: Color(0xFF3B3E5B),
-          unselectedLabelColor: Color(0xFF7C7E92),
-          labelStyle: TextStyle(
-            fontFamily: 'Roboto',
-            fontSize: 14,
-            fontWeight: FontWeight.w700,
-          ),
-          tabs: [
+        bottom: TabBar(
+          indicatorColor: Theme.of(context).iconTheme.color,
+          tabs: const [
             Tab(
               text: 'Хочу посетить',
             ),
