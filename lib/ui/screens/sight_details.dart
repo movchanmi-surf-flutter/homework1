@@ -1,9 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/domain/sight.dart';
-import 'package:places/generated/assets.dart';
 
 class SightDetails extends StatefulWidget {
   const SightDetails({Key? key, required this.sight}) : super(key: key);
@@ -25,23 +21,34 @@ class _SightDetailsState extends State<SightDetails> {
               Image.network(
                 widget.sight.url,
                 height: 360,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.black,
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                            loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  }
               ),
               Positioned(
                 top: 36,
                 left: 16,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: ()=>Navigator.pop(context),
                   child: Container(
                     width: 32,
                     height: 32,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                      color: Theme.of(context).backgroundColor,
                         borderRadius: BorderRadius.circular(10)),
                     child: const Center(
                       child: Icon(
                         Icons.arrow_back_ios_new,
-                        color: Color(0xFF252849),
                         size: 20,
                       ),
                     ),
@@ -61,11 +68,7 @@ class _SightDetailsState extends State<SightDetails> {
                 RichText(
                   text: TextSpan(
                     text: widget.sight.name,
-                    style: const TextStyle(
-                      color: Color(0xFF3B3E58),
-                      fontWeight: FontWeight.w700,
-                      fontSize: 24,
-                    ),
+                    style: Theme.of(context).textTheme.headline2,
                   ),
                 ),
                 const SizedBox(
@@ -74,38 +77,24 @@ class _SightDetailsState extends State<SightDetails> {
                 RichText(
                     text: TextSpan(
                         text: widget.sight.type,
-                        style: const TextStyle(
-                          color: Color(0xFF3B3E58),
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w700,
-                          fontSize: 14,
-                        ),
-                        children: const [
-                      WidgetSpan(
+                        style: Theme.of(context).textTheme.headline3,
+                        children: [
+                      const WidgetSpan(
                         child: SizedBox(
                           width: 16,
                         ),
                       ),
                       TextSpan(
                           text: 'закрыто до 09:00',
-                          style: TextStyle(
-                            color: Color(0xFF7C7E92),
-                            fontFamily: 'Roboto',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                          ))
+                          style: Theme.of(context).textTheme.headline4
+                      )
                     ])),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24),
                   child: RichText(
                     text: TextSpan(
                       text: widget.sight.details,
-                      style: const TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF3B3E5B),
-                      ),
+                      style: Theme.of(context).textTheme.headline5
                     ),
                   ),
                 ),
@@ -154,7 +143,6 @@ class _SightDetailsState extends State<SightDetails> {
                     ),
                     SightDetailsButton(
                       label: 'В Избранное',
-                      color: Color(0xFF3B3E5B),
                       imagePath: 'assets/images/heart.png',
                     ),
                   ],
@@ -170,11 +158,10 @@ class _SightDetailsState extends State<SightDetails> {
 
 class SightDetailsButton extends StatelessWidget {
   const SightDetailsButton(
-      {Key? key, this.onTap, required this.label, required this.imagePath, this.color})
+      {Key? key, this.onTap, required this.label, required this.imagePath,})
       : super(key: key);
   final VoidCallback? onTap;
   final String label;
-  final Color? color;
   final String imagePath;
 
   @override
@@ -189,7 +176,7 @@ class SightDetailsButton extends StatelessWidget {
                 imagePath,
                 width: 24,
                 height: 24,
-                color: color,
+                color: Theme.of(context).iconTheme.color,
               ),
               const SizedBox(
                 width: 9,
@@ -197,7 +184,6 @@ class SightDetailsButton extends StatelessWidget {
               Text(
                 label,
                 style: TextStyle(
-                  color: color ?? const Color.fromRGBO(124, 126, 146, 0.56),
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.w400,
                   fontSize: 14,
