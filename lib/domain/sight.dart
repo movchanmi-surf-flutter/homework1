@@ -1,3 +1,4 @@
+///Класс, содержащий информацию о рекомендуемом месте
 class Sight {
   Sight({
     required this.name,
@@ -6,7 +7,7 @@ class Sight {
     required this.details,
     required this.type,
     required this.url,
-});
+  });
 
   String name;
   double lat;
