@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:places/mocks.dart';
 import 'package:places/ui/screens/sight_card.dart';
 
@@ -13,7 +14,7 @@ class _SightListScreenState extends State<SightListScreen> {
   @override
   Widget build(BuildContext context) => Scaffold(
         // resizeToAvoidBottomInset: false,
-        appBar: const MyAppBar(),
+        appBar: const _MyAppBar(),
         body: SafeArea(
           bottom: false,
           minimum: const EdgeInsets.only(left: 16, right: 16, top: 16),
@@ -28,17 +29,15 @@ class _SightListScreenState extends State<SightListScreen> {
       );
 }
 
-class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MyAppBar({super.key});
+class _MyAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const _MyAppBar();
 
   @override
   Widget build(BuildContext context) => Container(
         constraints: BoxConstraints.tightFor(height: preferredSize.height),
         padding: const EdgeInsets.only(left: 16, top: 40),
-        child: Text(
-          'Список\nинтересных мест',
-          style: Theme.of(context).textTheme.headline1
-        ),
+        child: Text(AppLocalizations.of(context)!.listOfInterestingPlaces,
+            style: Theme.of(context).textTheme.headline1),
       );
 
   @override

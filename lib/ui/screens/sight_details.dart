@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:places/domain/sight.dart';
+import 'package:places/generated/assets.dart';
+import 'package:places/ui/screens/res/app_typography.dart';
+import 'package:places/ui/screens/res/colors.dart';
 
 class SightDetails extends StatefulWidget {
   const SightDetails({Key? key, required this.sight}) : super(key: key);
@@ -18,33 +23,29 @@ class _SightDetailsState extends State<SightDetails> {
         children: [
           Stack(
             children: [
-              Image.network(
-                widget.sight.url,
-                height: 360,
-                fit: BoxFit.cover,
+              Image.network(widget.sight.url, height: 360, fit: BoxFit.cover,
                   loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.black,
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded /
+                if (loadingProgress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.black,
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
                             loadingProgress.expectedTotalBytes!
-                            : null,
-                      ),
-                    );
-                  }
-              ),
+                        : null,
+                  ),
+                );
+              }),
               Positioned(
                 top: 36,
                 left: 16,
                 child: InkWell(
-                  onTap: ()=>Navigator.pop(context),
+                  onTap: () => Navigator.pop(context),
                   child: Container(
                     width: 32,
                     height: 32,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).backgroundColor,
+                        color: Theme.of(context).backgroundColor,
                         borderRadius: BorderRadius.circular(10)),
                     child: const Center(
                       child: Icon(
@@ -86,16 +87,14 @@ class _SightDetailsState extends State<SightDetails> {
                       ),
                       TextSpan(
                           text: 'закрыто до 09:00',
-                          style: Theme.of(context).textTheme.headline4
-                      )
+                          style: Theme.of(context).textTheme.headline4)
                     ])),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24),
                   child: RichText(
                     text: TextSpan(
-                      text: widget.sight.details,
-                      style: Theme.of(context).textTheme.headline5
-                    ),
+                        text: widget.sight.details,
+                        style: Theme.of(context).textTheme.headline5),
                   ),
                 ),
                 InkWell(
@@ -108,22 +107,18 @@ class _SightDetailsState extends State<SightDetails> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'assets/images/route.png',
+                        SvgPicture.asset(
+                          Assets.imagesRoute,
                           width: 24,
                           height: 24,
                         ),
                         const SizedBox(
                           width: 8,
                         ),
-                        const Text(
-                          'ПОСТРОИТЬ МАРШРУТ',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'Roboto',
-                              letterSpacing: 0.03),
+                        Text(
+                          AppLocalizations.of(context)!.buildRoute,
+                          style: AppTypography.headline3.copyWith(
+                              color: AppColors.white, letterSpacing: 0.03),
                         )
                       ],
                     ),
@@ -136,13 +131,13 @@ class _SightDetailsState extends State<SightDetails> {
                   ),
                 ),
                 Row(
-                  children: const [
+                  children: [
                     SightDetailsButton(
-                      label: 'Запланировать',
+                      label: AppLocalizations.of(context)!.plain,
                       imagePath: 'assets/images/calendar.png',
                     ),
                     SightDetailsButton(
-                      label: 'В Избранное',
+                      label: AppLocalizations.of(context)!.toFav,
                       imagePath: 'assets/images/heart.png',
                     ),
                   ],
@@ -157,9 +152,12 @@ class _SightDetailsState extends State<SightDetails> {
 }
 
 class SightDetailsButton extends StatelessWidget {
-  const SightDetailsButton(
-      {Key? key, this.onTap, required this.label, required this.imagePath,})
-      : super(key: key);
+  const SightDetailsButton({
+    Key? key,
+    this.onTap,
+    required this.label,
+    required this.imagePath,
+  }) : super(key: key);
   final VoidCallback? onTap;
   final String label;
   final String imagePath;
@@ -172,7 +170,7 @@ class SightDetailsButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
+              SvgPicture.asset(
                 imagePath,
                 width: 24,
                 height: 24,
@@ -183,11 +181,7 @@ class SightDetailsButton extends StatelessWidget {
               ),
               Text(
                 label,
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14,
-                ),
+                style: AppTypography.headline4,
               ),
             ],
           ),

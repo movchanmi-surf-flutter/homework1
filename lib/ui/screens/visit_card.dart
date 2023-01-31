@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/generated/assets.dart';
-import 'package:places/ui/screens/res/app_typography.dart';
 import 'package:places/ui/screens/res/colors.dart';
 import 'package:places/ui/screens/sight_details.dart';
 
-class SightCard extends StatelessWidget {
-  const SightCard({Key? key, required this.sight}) : super(key: key);
+class VisitCard extends StatelessWidget {
+  const VisitCard({Key? key, required this.sight, this.planned})
+      : super(key: key);
   final Sight sight;
+  final bool? planned;
 
   @override
   Widget build(BuildContext context) => AspectRatio(
@@ -62,12 +62,27 @@ class SightCard extends StatelessWidget {
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700),
                           ),
-                          SvgPicture.asset(
-                            Assets.imagesHeart,
-                            width: 24,
-                            height: 24,
-                            color: AppColors.white,
-                          ),
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                planned == true
+                                    ? Assets.imagesCalendar
+                                    : Assets.imagesShare,
+                                width: 24,
+                                height: 24,
+                                color: AppColors.white,
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              SvgPicture.asset(
+                                Assets.imagesClear,
+                                width: 12,
+                                height: 12,
+                                color: AppColors.white,
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ),
@@ -92,24 +107,36 @@ class SightCard extends StatelessWidget {
                               child: RichText(
                                 text: TextSpan(
                                   text: sight.name,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline2
-                                      ?.copyWith(fontSize: 16),
+                                  style: TextStyle(
+                                    color: Theme.of(context).iconTheme.color,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              height: 2,
-                            ),
-                            InkWell(
-                              onTap: () {},
-                              child: Text(
-                                AppLocalizations.of(context)!.shortDesc,
-                                style: AppTypography.headline4
-                                    .copyWith(color: AppColors.lightGray),
+                            Text(
+                              planned == true
+                                  ? 'Запланировано на 12 окт.2023'
+                                  : 'Цель достигнута на 12 окт.2023',
+                              style: TextStyle(
+                                color: Color(
+                                    planned == true ? 0xFF4CAF50 : 0xFF7C7E92),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
                               ),
-                            )
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Text(
+                              'Закрыто до 09:00',
+                              style: TextStyle(
+                                color: AppColors.lightGray,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                              ),
+                            ),
                           ],
                         ),
                       ),
