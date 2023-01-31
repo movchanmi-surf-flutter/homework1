@@ -15,6 +15,13 @@ class SightDetails extends StatefulWidget {
 }
 
 class _SightDetailsState extends State<SightDetails> {
+  late final AppLocalizations applocale;
+  @override
+  void initState() {
+    applocale = AppLocalizations.of(context)!;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +123,7 @@ class _SightDetailsState extends State<SightDetails> {
                           width: 8,
                         ),
                         Text(
-                          AppLocalizations.of(context)!.buildRoute,
+                          applocale.buildRoute,
                           style: AppTypography.headline3.copyWith(
                               color: AppColors.white, letterSpacing: 0.03),
                         )
@@ -133,12 +140,12 @@ class _SightDetailsState extends State<SightDetails> {
                 Row(
                   children: [
                     SightDetailsButton(
-                      label: AppLocalizations.of(context)!.plain,
-                      imagePath: 'assets/images/calendar.png',
+                      label: applocale.plain,
+                      imagePath: Assets.imagesCalendar,
                     ),
                     SightDetailsButton(
-                      label: AppLocalizations.of(context)!.toFav,
-                      imagePath: 'assets/images/heart.png',
+                      label: applocale.toFav,
+                      imagePath: Assets.imagesHeart,
                     ),
                   ],
                 )

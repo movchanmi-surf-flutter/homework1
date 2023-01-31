@@ -30,7 +30,7 @@ abstract class AppThemes {
       textTheme: TextTheme(
           headline1: AppTypography.headline1,
           headline2: AppTypography.headline2,
-          headline3: AppTypography.headline3,
+          headline3: AppTypography.headline3.copyWith(color: AppColors.white),
           headline4: AppTypography.headline4,
           headline5: AppTypography.headline4.copyWith(color: AppColors.black)),
       fontFamily: 'Roboto');
