@@ -26,14 +26,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  bool isDarkTheme = false;
-  static const List<Widget> screens = [
-    SightListScreen(),
-    Text(''),
-    VisitingScreen(),
-    Text(''),
-  ];
-  int currind = 0;
+  bool isDarkTheme = true;
 
   @override
   Widget build(BuildContext context) {
@@ -46,37 +39,71 @@ class _MainScreenState extends State<MainScreen> {
       ],
       locale: const Locale('ru'),
       supportedLocales: AppLocalizations.supportedLocales,
-      home: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: currind,
-          onTap: (newInd) =>
-              newInd != currind ? setState(() => currind = newInd) : null,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: [
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(Assets.imagesList),
-              label: 'list',
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.map_outlined),
-              label: 'map',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(Assets.imagesHeartFilled),
-              label: 'favorites',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(Assets.imagesSettings),
-              label: 'settings',
-            ),
-          ],
-        ),
-        body: screens[currind],
-      ),
+      home: const _EntryScreen(),
       debugShowCheckedModeBanner: false,
       theme: isDarkTheme ? AppThemes.darkTheme : AppThemes.lightTheme,
       title: 'Places',
+    );
+  }
+}
+
+class _EntryScreen extends StatefulWidget {
+  const _EntryScreen();
+
+  @override
+  State<StatefulWidget> createState() => _EntryScreenState();
+}
+
+class _EntryScreenState extends State<_EntryScreen> {
+  _EntryScreenState();
+
+  static const List<Widget> screens = [
+    SightListScreen(),
+    Text(''),
+    VisitingScreen(),
+    Text(''),
+  ];
+  int currind = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currind,
+        onTap: (newInd) =>
+            newInd != currind ? setState(() => currind = newInd) : null,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: [
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(Assets.imagesList,
+                color: theme.bottomNavigationBarTheme.unselectedItemColor),
+            activeIcon: SvgPicture.asset(Assets.imagesList,
+                color: theme.bottomNavigationBarTheme.selectedItemColor),
+            label: 'list',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.map_outlined),
+            label: 'map',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(Assets.imagesHeartFilled,
+                color: theme.bottomNavigationBarTheme.unselectedItemColor),
+            activeIcon: SvgPicture.asset(Assets.imagesHeartFilled,
+                color: theme.bottomNavigationBarTheme.selectedItemColor),
+            label: 'favorites',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(Assets.imagesSettings,
+                color: theme.bottomNavigationBarTheme.unselectedItemColor),
+            activeIcon: SvgPicture.asset(Assets.imagesSettings,
+                color: theme.bottomNavigationBarTheme.selectedItemColor),
+            label: 'settings',
+          ),
+        ],
+      ),
+      body: screens[currind],
     );
   }
 }

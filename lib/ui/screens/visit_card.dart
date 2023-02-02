@@ -15,7 +15,7 @@ class VisitCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
-    final theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
     return AspectRatio(
       aspectRatio: 3 / 2,
       child: InkWell(
@@ -60,30 +60,34 @@ class VisitCard extends StatelessWidget {
                       children: [
                         Text(
                           sight.type,
-                          style: const TextStyle(
-                              color: AppColors.white,
-                              fontFamily: 'Roboto',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700),
+                          style: AppTypography.headline3.copyWith(
+                            color: AppColors.white
+                          ),
                         ),
                         Row(
                           children: [
-                            SvgPicture.asset(
-                              planned == true
-                                  ? Assets.imagesCalendar
-                                  : Assets.imagesShare,
-                              width: 24,
-                              height: 24,
-                              color: AppColors.white,
+                            InkWell(
+                              onTap: planned==true ? _onCalendarPressed : _share,
+                              child: SvgPicture.asset(
+                                planned == true
+                                    ? Assets.imagesCalendar
+                                    : Assets.imagesShare,
+                                width: 24,
+                                height: 24,
+                                color: AppColors.white,
+                              ),
                             ),
                             const SizedBox(
                               width: 20,
                             ),
-                            SvgPicture.asset(
-                              Assets.imagesClear,
-                              width: 12,
-                              height: 12,
-                              color: AppColors.white,
+                            InkWell(
+                              onTap: _onClearPressed,
+                              child: SvgPicture.asset(
+                                Assets.imagesClear,
+                                width: 24,
+                                height: 24,
+                                color: AppColors.white,
+                              ),
                             ),
                           ],
                         )
@@ -130,13 +134,9 @@ class VisitCard extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text(
+                          Text(
                             'Закрыто до 09:00',
-                            style: TextStyle(
-                              color: AppColors.lightGray,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
+                            style: AppTypography.headline4.copyWith(color: AppColors.lightGray),
                           ),
                         ],
                       ),
@@ -149,5 +149,14 @@ class VisitCard extends StatelessWidget {
         ),
       ),
     );
+  }
+  void _share(){
+    debugPrint('Нажата кнопка поделиться');
+  }
+  void _onCalendarPressed(){
+    debugPrint('Нажат кнопка календаря');
+  }
+  void _onClearPressed(){
+  debugPrint('Нажат крестик');
   }
 }

@@ -58,13 +58,15 @@ class SightCard extends StatelessWidget {
                       children: [
                         Text(
                           sight.type,
-                          style: theme.textTheme.headline3,
+                          style: theme.textTheme.headline3?.copyWith(color: AppColors.white),
                         ),
-                        SvgPicture.asset(
-                          Assets.imagesHeart,
-                          width: 24,
-                          height: 24,
-                          color: AppColors.white,
+                        InkWell(
+                          child: SvgPicture.asset(
+                            Assets.imagesHeart,
+                            width: 24,
+                            height: 24,
+                            color: AppColors.white,
+                          ),
                         ),
                       ],
                     ),

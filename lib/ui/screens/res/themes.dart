@@ -8,6 +8,12 @@ abstract class AppThemes {
       iconTheme: const IconThemeData(
         color: AppColors.darkGray,
       ),
+      buttonTheme: const ButtonThemeData(
+        splashColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+      ),
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: AppColors.black,
       ),
@@ -55,12 +61,18 @@ abstract class AppThemes {
         unselectedItemColor: AppColors.white.withOpacity(0.3),
         backgroundColor: AppColors.darkGray,
       ),
+      buttonTheme: const ButtonThemeData(
+        splashColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+      ),
       textTheme: TextTheme(
           headline1: AppTypography.headline1.copyWith(color: AppColors.white),
           headline2: AppTypography.headline2.copyWith(color: AppColors.white),
           headline3:
               AppTypography.headline3.copyWith(color: AppColors.lightGray),
-          headline4: AppTypography.headline4,
+          headline4: AppTypography.headline4.copyWith(color: AppColors.white),
           headline5: AppTypography.headline4.copyWith(color: AppColors.white)),
       tabBarTheme: const TabBarTheme(
         unselectedLabelColor: AppColors.lightGray,

@@ -13,49 +13,50 @@ class VisitingScreen extends StatefulWidget {
 class _VisitingScreenState extends State<VisitingScreen>
     with TickerProviderStateMixin {
   late final AppLocalizations applocale;
-  late final ThemeData theme;
   @override
   void initState() {
-    theme = Theme.of(context);
-    applocale=AppLocalizations.of(context)!;
     super.initState();
   }
   @override
-  Widget build(BuildContext context) => DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            elevation: 0.0,
-            title: Text(
-              applocale.fav,
-              style:
-                  theme.textTheme.headline1?.copyWith(fontSize: 18),
-            ),
-            bottom: TabBar(
-              indicatorColor: theme.iconTheme.color,
-              tabs: [
-                Tab(
-                  text: applocale.seen,
-                ),
-                Tab(
-                  text: applocale.wannaSee,
-                )
-              ],
-            ),
+  Widget build(BuildContext context){
+    final ThemeData theme = Theme.of(context);
+    final AppLocalizations applocale=AppLocalizations.of(context)!;
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0.0,
+          title: Text(
+            applocale.fav,
+            style:
+            theme.textTheme.headline1?.copyWith(fontSize: 18),
           ),
-          body: const TabBarView(
-            children: [
-              WantToVisitPage(),
-              VisitedPage(),
+          bottom: TabBar(
+            indicatorColor: theme.iconTheme.color,
+            tabs: [
+              Tab(
+                text: applocale.seen,
+              ),
+              Tab(
+                text: applocale.wannaSee,
+              )
             ],
           ),
         ),
-      );
+        body: const TabBarView(
+          children: [
+            _WantToVisitPage(),
+            _VisitedPage(),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 ///Страница мест, которые хотелось посетить
-class WantToVisitPage extends StatelessWidget {
-  const WantToVisitPage({Key? key}) : super(key: key);
+class _WantToVisitPage extends StatelessWidget {
+  const _WantToVisitPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => ListView(
@@ -70,8 +71,8 @@ class WantToVisitPage extends StatelessWidget {
 }
 
 ///Страница посещенных мест
-class VisitedPage extends StatelessWidget {
-  const VisitedPage({Key? key}) : super(key: key);
+class _VisitedPage extends StatelessWidget {
+  const _VisitedPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => ListView(

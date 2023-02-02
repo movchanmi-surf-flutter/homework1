@@ -15,15 +15,14 @@ class SightDetails extends StatefulWidget {
 }
 
 class _SightDetailsState extends State<SightDetails> {
-  late final AppLocalizations applocale;
   @override
   void initState() {
-    applocale = AppLocalizations.of(context)!;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations applocale = AppLocalizations.of(context)!;
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,6 +104,7 @@ class _SightDetailsState extends State<SightDetails> {
                   ),
                 ),
                 InkWell(
+                  onTap: _createRoute,
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     decoration: BoxDecoration(
@@ -141,9 +141,11 @@ class _SightDetailsState extends State<SightDetails> {
                   children: [
                     SightDetailsButton(
                       label: applocale.plain,
+                      onTap: () => _onButtonTap(buttonName: applocale.plain),
                       imagePath: Assets.imagesCalendar,
                     ),
                     SightDetailsButton(
+                      onTap: () => _onButtonTap(buttonName: applocale.toFav),
                       label: applocale.toFav,
                       imagePath: Assets.imagesHeart,
                     ),
@@ -155,6 +157,14 @@ class _SightDetailsState extends State<SightDetails> {
         ],
       ),
     );
+  }
+
+  void _onButtonTap({required String buttonName}) {
+    debugPrint('Нажата кнопка "$buttonName"');
+  }
+
+  void _createRoute() {
+    debugPrint('Нажата кнопка построения маршрута');
   }
 }
 
@@ -188,7 +198,7 @@ class SightDetailsButton extends StatelessWidget {
               ),
               Text(
                 label,
-                style: AppTypography.headline4,
+                style: Theme.of(context).textTheme.headline4,
               ),
             ],
           ),
