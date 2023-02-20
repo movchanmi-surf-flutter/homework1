@@ -13,14 +13,16 @@ class VisitingScreen extends StatefulWidget {
 class _VisitingScreenState extends State<VisitingScreen>
     with TickerProviderStateMixin {
   late final AppLocalizations applocale;
+
   @override
   void initState() {
     super.initState();
   }
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final AppLocalizations applocale=AppLocalizations.of(context)!;
+    final AppLocalizations applocale = AppLocalizations.of(context)!;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -28,8 +30,7 @@ class _VisitingScreenState extends State<VisitingScreen>
           elevation: 0.0,
           title: Text(
             applocale.fav,
-            style:
-            theme.textTheme.displayLarge?.copyWith(fontSize: 18),
+            style: theme.textTheme.displayLarge?.copyWith(fontSize: 18),
           ),
           bottom: TabBar(
             indicatorColor: theme.iconTheme.color,

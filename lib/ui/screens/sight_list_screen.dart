@@ -36,8 +36,10 @@ class _MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) => Container(
         constraints: BoxConstraints.tightFor(height: preferredSize.height),
         padding: const EdgeInsets.only(left: 16, top: 40),
-        child: Text(AppLocalizations.of(context)!.listOfInterestingPlaces,
-            style: Theme.of(context).textTheme.displayLarge,),
+        child: Text(
+          AppLocalizations.of(context)!.listOfInterestingPlaces,
+          style: Theme.of(context).textTheme.displayLarge,
+        ),
       );
 
   @override

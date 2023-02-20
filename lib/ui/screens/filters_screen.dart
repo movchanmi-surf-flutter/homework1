@@ -22,6 +22,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
   List<Sight> currPlaces = mocks;
   int places = mocks.length;
   late final Position currPosition;
+
   @override
   void initState() {
     GeoService.determinePosition()
@@ -70,7 +71,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
           children: [
             Text(
               applocale.categories,
-              style: AppTypography.headline4.copyWith(fontSize: 12),
+              style: AppTypography.headline4.copyWith(
+                  fontSize: 12, color: theme.textTheme.displayLarge?.color),
             ),
             Center(
                 child: Wrap(
@@ -109,7 +111,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                           ),
                     ),
                     Text(
-                      '${applocale.from} ${distanceRange.start.toInt()} ${applocale.to} ${distanceRange.end.toInt()} ${applocale.metres}',
+                      '${applocale.from} ${distanceRange.start.toInt() >= 1000 ? (distanceRange.start.toInt() / 1000).toStringAsFixed(1) : distanceRange.start.toInt()} ${distanceRange.start.toInt() >= 1000 ? applocale.km : applocale.metres} ${applocale.to} ${distanceRange.end.toInt() >= 1000 ? (distanceRange.end.toInt() / 1000).toStringAsFixed(1) : distanceRange.end.toInt()} ${distanceRange.end.toInt() >= 1000 ? applocale.km : applocale.metres}',
                       style:
                           Theme.of(context).textTheme.headlineMedium?.copyWith(
                                 fontSize: 16,
@@ -122,6 +124,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   values: distanceRange,
                   max: 10000,
                   min: 100,
+                  activeColor: AppColors.green,
+                  inactiveColor: theme.unselectedWidgetColor,
                   onChanged: (values) {
                     setState(() {
                       distanceRange = values;
@@ -168,7 +172,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   int _checkPlaces({required RangeValues values}) {
     int places = 0;
-    List<Sight> sights = [];
+    final sights = <Sight>[];
     for (final mock in mocks) {
       if (GeoService.isPositionInArea(
           latitude: mock.latitude,

@@ -59,9 +59,11 @@ final List<Sight> mocks = [
     name: 'Санаторий им.Орджоникидзе',
     latitude: 43.55600000,
     longtitude: 39.76900000,
-    details: 'Заброшенный Санаторий 1938 года постройки в стиле сталинского неоклассицизма',
+    details:
+        'Заброшенный Санаторий 1938 года постройки в стиле сталинского неоклассицизма',
     category: categories[2],
-    url: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/2b/20/8d/img-20190119-150608-01.jpg?w=1200&h=-1&s=1',
+    url:
+        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/2b/20/8d/img-20190119-150608-01.jpg?w=1200&h=-1&s=1',
   ),
   Sight(
     name: 'Seabus Fishzone',

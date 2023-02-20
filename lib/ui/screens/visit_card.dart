@@ -11,10 +11,10 @@ class VisitCard extends StatelessWidget {
       : super(key: key);
   final Sight sight;
   final bool? planned;
-  @override
 
   @override
-  Widget build(BuildContext context){
+  @override
+  Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return AspectRatio(
       aspectRatio: 3 / 2,
@@ -38,17 +38,17 @@ class VisitCard extends StatelessWidget {
             children: [
               Image.network(sight.url,
                   loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.black,
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded /
+                if (loadingProgress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.black,
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
                             loadingProgress.expectedTotalBytes!
-                            : null,
-                      ),
-                    );
-                  }),
+                        : null,
+                  ),
+                );
+              }),
               Stack(
                 children: [
                   Positioned(
@@ -60,14 +60,14 @@ class VisitCard extends StatelessWidget {
                       children: [
                         Text(
                           sight.category.categoryName,
-                          style: AppTypography.headline3.copyWith(
-                            color: AppColors.white
-                          ),
+                          style: AppTypography.headline3
+                              .copyWith(color: AppColors.white),
                         ),
                         Row(
                           children: [
                             InkWell(
-                              onTap: planned==true ? _onCalendarPressed : _share,
+                              onTap:
+                                  planned == true ? _onCalendarPressed : _share,
                               child: SvgPicture.asset(
                                 planned == true
                                     ? Assets.imagesCalendar
@@ -110,8 +110,7 @@ class VisitCard extends StatelessWidget {
                         children: [
                           ConstrainedBox(
                             constraints: BoxConstraints.tightFor(
-                                width:
-                                MediaQuery.of(context).size.width * 0.5),
+                                width: MediaQuery.of(context).size.width * 0.5),
                             child: RichText(
                               text: TextSpan(
                                 text: sight.name,
@@ -128,15 +127,16 @@ class VisitCard extends StatelessWidget {
                                   ? 'Запланировано на 12 окт.2023'
                                   : 'Цель достигнута на 12 окт.2023',
                               style: AppTypography.headline4.copyWith(
-                                  color: Color(planned == true ? 0xFF4CAF50 : 0xFF7C7E92)
-                              )
-                          ),
+                                  color: Color(planned == true
+                                      ? 0xFF4CAF50
+                                      : 0xFF7C7E92))),
                           const SizedBox(
                             height: 10,
                           ),
                           Text(
                             'Закрыто до 09:00',
-                            style: AppTypography.headline4.copyWith(color: AppColors.lightGray),
+                            style: AppTypography.headline4
+                                .copyWith(color: AppColors.lightGray),
                           ),
                         ],
                       ),
@@ -150,13 +150,16 @@ class VisitCard extends StatelessWidget {
       ),
     );
   }
-  void _share(){
+
+  void _share() {
     debugPrint('Нажата кнопка поделиться');
   }
-  void _onCalendarPressed(){
+
+  void _onCalendarPressed() {
     debugPrint('Нажат кнопка календаря');
   }
-  void _onClearPressed(){
-  debugPrint('Нажат крестик');
+
+  void _onClearPressed() {
+    debugPrint('Нажат крестик');
   }
 }

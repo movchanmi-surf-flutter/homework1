@@ -12,7 +12,7 @@ class SightCard extends StatelessWidget {
   final Sight sight;
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return AspectRatio(
       aspectRatio: 3 / 2,
@@ -36,17 +36,17 @@ class SightCard extends StatelessWidget {
             children: [
               Image.network(sight.url,
                   loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.black,
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded /
+                if (loadingProgress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.black,
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
                             loadingProgress.expectedTotalBytes!
-                            : null,
-                      ),
-                    );
-                  }),
+                        : null,
+                  ),
+                );
+              }),
               Stack(
                 children: [
                   Positioned(
@@ -58,7 +58,8 @@ class SightCard extends StatelessWidget {
                       children: [
                         Text(
                           sight.category.categoryName,
-                          style: theme.textTheme.displaySmall?.copyWith(color: AppColors.white),
+                          style: theme.textTheme.displaySmall
+                              ?.copyWith(color: AppColors.white),
                         ),
                         InkWell(
                           child: SvgPicture.asset(
@@ -87,14 +88,11 @@ class SightCard extends StatelessWidget {
                         children: [
                           ConstrainedBox(
                             constraints: BoxConstraints.tightFor(
-                                width:
-                                MediaQuery.of(context).size.width * 0.5),
+                                width: MediaQuery.of(context).size.width * 0.5),
                             child: RichText(
                               text: TextSpan(
                                 text: sight.name,
-                                style: theme
-                                    .textTheme
-                                    .displayMedium
+                                style: theme.textTheme.displayMedium
                                     ?.copyWith(fontSize: 16),
                               ),
                             ),
