@@ -59,7 +59,7 @@ class VisitCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          sight.type,
+                          sight.category.categoryName,
                           style: AppTypography.headline3.copyWith(
                             color: AppColors.white
                           ),

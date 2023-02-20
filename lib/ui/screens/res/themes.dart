@@ -8,6 +8,13 @@ abstract class AppThemes {
       iconTheme: const IconThemeData(
         color: AppColors.darkGray,
       ),
+      sliderTheme: SliderThemeData(
+        activeTrackColor: AppColors.green,
+          thumbColor: AppColors.white,
+        trackHeight: 2,
+        overlayColor: AppColors.green.withOpacity(0.1),
+        inactiveTrackColor: AppColors.lightGray.withOpacity(0.56)
+      ),
       buttonTheme: const ButtonThemeData(
         splashColor: Colors.transparent,
         focusColor: Colors.transparent,
@@ -34,11 +41,11 @@ abstract class AppThemes {
         labelStyle: AppTypography.headline3,
       ),
       textTheme: TextTheme(
-          headline1: AppTypography.headline1,
-          headline2: AppTypography.headline2,
-          headline3: AppTypography.headline3.copyWith(color: AppColors.white),
-          headline4: AppTypography.headline4,
-          headline5: AppTypography.headline4.copyWith(color: AppColors.black)),
+          displayLarge: AppTypography.headline1,
+          displayMedium: AppTypography.headline2,
+          displaySmall: AppTypography.headline3.copyWith(color: AppColors.white),
+          headlineMedium: AppTypography.headline4,
+          headlineSmall: AppTypography.headline4.copyWith(color: AppColors.black)),
       fontFamily: 'Roboto');
 
   static ThemeData darkTheme = ThemeData(
@@ -68,12 +75,12 @@ abstract class AppThemes {
         hoverColor: Colors.transparent,
       ),
       textTheme: TextTheme(
-          headline1: AppTypography.headline1.copyWith(color: AppColors.white),
-          headline2: AppTypography.headline2.copyWith(color: AppColors.white),
-          headline3:
+          displayLarge: AppTypography.headline1.copyWith(color: AppColors.white),
+          displayMedium: AppTypography.headline2.copyWith(color: AppColors.white),
+          displaySmall:
               AppTypography.headline3.copyWith(color: AppColors.lightGray),
-          headline4: AppTypography.headline4.copyWith(color: AppColors.white),
-          headline5: AppTypography.headline4.copyWith(color: AppColors.white)),
+          headlineMedium: AppTypography.headline4.copyWith(color: AppColors.white),
+          headlineSmall: AppTypography.headline4.copyWith(color: AppColors.white)),
       tabBarTheme: const TabBarTheme(
         unselectedLabelColor: AppColors.lightGray,
         labelColor: AppColors.white,

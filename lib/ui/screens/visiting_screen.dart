@@ -29,7 +29,7 @@ class _VisitingScreenState extends State<VisitingScreen>
           title: Text(
             applocale.fav,
             style:
-            theme.textTheme.headline1?.copyWith(fontSize: 18),
+            theme.textTheme.displayLarge?.copyWith(fontSize: 18),
           ),
           bottom: TabBar(
             indicatorColor: theme.iconTheme.color,

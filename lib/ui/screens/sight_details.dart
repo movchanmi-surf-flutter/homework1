@@ -5,6 +5,7 @@ import 'package:places/domain/sight.dart';
 import 'package:places/generated/assets.dart';
 import 'package:places/ui/screens/res/app_typography.dart';
 import 'package:places/ui/screens/res/colors.dart';
+import 'package:places/ui/screens/uikit/main_button.dart';
 
 class SightDetails extends StatefulWidget {
   const SightDetails({Key? key, required this.sight}) : super(key: key);
@@ -75,7 +76,7 @@ class _SightDetailsState extends State<SightDetails> {
                 RichText(
                   text: TextSpan(
                     text: widget.sight.name,
-                    style: Theme.of(context).textTheme.headline2,
+                    style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ),
                 const SizedBox(
@@ -83,8 +84,8 @@ class _SightDetailsState extends State<SightDetails> {
                 ),
                 RichText(
                     text: TextSpan(
-                        text: widget.sight.type,
-                        style: Theme.of(context).textTheme.headline3,
+                        text: widget.sight.category.categoryName,
+                        style: Theme.of(context).textTheme.displaySmall,
                         children: [
                       const WidgetSpan(
                         child: SizedBox(
@@ -93,43 +94,36 @@ class _SightDetailsState extends State<SightDetails> {
                       ),
                       TextSpan(
                           text: 'закрыто до 09:00',
-                          style: Theme.of(context).textTheme.headline4)
+                          style: Theme.of(context).textTheme.headlineMedium)
                     ])),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24),
                   child: RichText(
                     text: TextSpan(
                         text: widget.sight.details,
-                        style: Theme.of(context).textTheme.headline5),
+                        style: Theme.of(context).textTheme.headlineSmall),
                   ),
                 ),
-                InkWell(
-                  onTap: _createRoute,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF4CAF50),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          Assets.imagesRoute,
-                          width: 24,
-                          height: 24,
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        Text(
-                          applocale.buildRoute,
-                          style: AppTypography.headline3.copyWith(
-                              color: AppColors.white, letterSpacing: 0.03),
-                        )
-                      ],
-                    ),
+                MainButton(
+                  body: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        Assets.imagesRoute,
+                        width: 24,
+                        height: 24,
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        applocale.buildRoute,
+                        style: AppTypography.headline3.copyWith(
+                            color: AppColors.white, letterSpacing: 0.03),
+                      )
+                    ],
                   ),
+                  onPressed: _createRoute,
                 ),
                 const Padding(
                   padding: EdgeInsets.only(top: 24, bottom: 8),
@@ -198,7 +192,7 @@ class SightDetailsButton extends StatelessWidget {
               ),
               Text(
                 label,
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
           ),

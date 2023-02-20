@@ -57,8 +57,8 @@ class SightCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          sight.type,
-                          style: theme.textTheme.headline3?.copyWith(color: AppColors.white),
+                          sight.category.categoryName,
+                          style: theme.textTheme.displaySmall?.copyWith(color: AppColors.white),
                         ),
                         InkWell(
                           child: SvgPicture.asset(
@@ -77,7 +77,7 @@ class SightCard extends StatelessWidget {
                       constraints: const BoxConstraints(
                           minHeight: 92, minWidth: double.infinity),
                       decoration: BoxDecoration(
-                        color: theme.backgroundColor,
+                        color: theme.colorScheme.background,
                       ),
                       padding: const EdgeInsets.all(16),
                       child: Column(
@@ -94,7 +94,7 @@ class SightCard extends StatelessWidget {
                                 text: sight.name,
                                 style: theme
                                     .textTheme
-                                    .headline2
+                                    .displayMedium
                                     ?.copyWith(fontSize: 16),
                               ),
                             ),
