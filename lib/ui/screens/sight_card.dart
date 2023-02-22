@@ -12,113 +12,112 @@ class SightCard extends StatelessWidget {
   final Sight sight;
 
   @override
-  Widget build(BuildContext context) => AspectRatio(
-        aspectRatio: 3 / 2,
-        child: InkWell(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute<Widget>(
-              builder: (_) => SightDetails(
-                sight: sight,
-              ),
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return AspectRatio(
+      aspectRatio: 3 / 2,
+      child: InkWell(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute<Widget>(
+            builder: (_) => SightDetails(
+              sight: sight,
             ),
           ),
-          borderRadius: BorderRadius.circular(16),
-          child: Container(
-            constraints: const BoxConstraints.expand(height: 188),
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Stack(
-              children: [
-                Image.network(sight.url,
-                    loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.black,
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                          : null,
-                    ),
-                  );
-                }),
-                Stack(
-                  children: [
-                    Positioned(
-                      top: 16,
-                      left: 16,
-                      right: 16,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            sight.type,
-                            style: const TextStyle(
-                                color: AppColors.white,
-                                fontFamily: 'Roboto',
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700),
-                          ),
-                          SvgPicture.asset(
+        ),
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          constraints: const BoxConstraints.expand(height: 188),
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Stack(
+            children: [
+              Image.network(sight.url,
+                  loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.black,
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            loadingProgress.expectedTotalBytes!
+                        : null,
+                  ),
+                );
+              }),
+              Stack(
+                children: [
+                  Positioned(
+                    top: 16,
+                    left: 16,
+                    right: 16,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          sight.category.categoryName,
+                          style: theme.textTheme.displaySmall
+                              ?.copyWith(color: AppColors.white),
+                        ),
+                        InkWell(
+                          child: SvgPicture.asset(
                             Assets.imagesHeart,
                             width: 24,
                             height: 24,
                             color: AppColors.white,
                           ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      constraints: const BoxConstraints(
+                          minHeight: 92, minWidth: double.infinity),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.background,
+                      ),
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ConstrainedBox(
+                            constraints: BoxConstraints.tightFor(
+                                width: MediaQuery.of(context).size.width * 0.5),
+                            child: RichText(
+                              text: TextSpan(
+                                text: sight.name,
+                                style: theme.textTheme.displayMedium
+                                    ?.copyWith(fontSize: 16),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Text(
+                              AppLocalizations.of(context)!.shortDesc,
+                              style: AppTypography.headline4
+                                  .copyWith(color: AppColors.lightGray),
+                            ),
+                          )
                         ],
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        constraints: const BoxConstraints(
-                            minHeight: 92, minWidth: double.infinity),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).backgroundColor,
-                        ),
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ConstrainedBox(
-                              constraints: BoxConstraints.tightFor(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5),
-                              child: RichText(
-                                text: TextSpan(
-                                  text: sight.name,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline2
-                                      ?.copyWith(fontSize: 16),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 2,
-                            ),
-                            InkWell(
-                              onTap: () {},
-                              child: Text(
-                                AppLocalizations.of(context)!.shortDesc,
-                                style: AppTypography.headline4
-                                    .copyWith(color: AppColors.lightGray),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
+                  ),
+                ],
+              )
+            ],
           ),
         ),
-      );
+      ),
+    );
+  }
 }

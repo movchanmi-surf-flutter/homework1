@@ -1,18 +1,20 @@
+import 'package:places/domain/category.dart';
+
 ///Класс, содержащий информацию о рекомендуемом месте
 class Sight {
   Sight({
     required this.name,
-    required this.lat,
-    required this.lon,
+    required this.latitude,
+    required this.longtitude,
     required this.details,
-    required this.type,
+    required this.category,
     required this.url,
   });
 
   String name;
-  double lat;
-  double lon;
+  double latitude;
+  double longtitude;
   String url;
   String details;
-  String type;
+  Category category;
 }

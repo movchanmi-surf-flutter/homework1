@@ -5,6 +5,7 @@ import 'package:places/domain/sight.dart';
 import 'package:places/generated/assets.dart';
 import 'package:places/ui/screens/res/app_typography.dart';
 import 'package:places/ui/screens/res/colors.dart';
+import 'package:places/ui/screens/uikit/main_button.dart';
 
 class SightDetails extends StatefulWidget {
   const SightDetails({Key? key, required this.sight}) : super(key: key);
@@ -16,7 +17,13 @@ class SightDetails extends StatefulWidget {
 
 class _SightDetailsState extends State<SightDetails> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final AppLocalizations applocale = AppLocalizations.of(context)!;
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +76,7 @@ class _SightDetailsState extends State<SightDetails> {
                 RichText(
                   text: TextSpan(
                     text: widget.sight.name,
-                    style: Theme.of(context).textTheme.headline2,
+                    style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ),
                 const SizedBox(
@@ -77,8 +84,8 @@ class _SightDetailsState extends State<SightDetails> {
                 ),
                 RichText(
                     text: TextSpan(
-                        text: widget.sight.type,
-                        style: Theme.of(context).textTheme.headline3,
+                        text: widget.sight.category.categoryName,
+                        style: Theme.of(context).textTheme.displaySmall,
                         children: [
                       const WidgetSpan(
                         child: SizedBox(
@@ -87,42 +94,36 @@ class _SightDetailsState extends State<SightDetails> {
                       ),
                       TextSpan(
                           text: 'закрыто до 09:00',
-                          style: Theme.of(context).textTheme.headline4)
+                          style: Theme.of(context).textTheme.headlineMedium)
                     ])),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24),
                   child: RichText(
                     text: TextSpan(
                         text: widget.sight.details,
-                        style: Theme.of(context).textTheme.headline5),
+                        style: Theme.of(context).textTheme.headlineSmall),
                   ),
                 ),
-                InkWell(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF4CAF50),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          Assets.imagesRoute,
-                          width: 24,
-                          height: 24,
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.buildRoute,
-                          style: AppTypography.headline3.copyWith(
-                              color: AppColors.white, letterSpacing: 0.03),
-                        )
-                      ],
-                    ),
+                MainButton(
+                  body: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        Assets.imagesRoute,
+                        width: 24,
+                        height: 24,
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        applocale.buildRoute,
+                        style: AppTypography.headline3.copyWith(
+                            color: AppColors.white, letterSpacing: 0.03),
+                      )
+                    ],
                   ),
+                  onPressed: _createRoute,
                 ),
                 const Padding(
                   padding: EdgeInsets.only(top: 24, bottom: 8),
@@ -133,12 +134,14 @@ class _SightDetailsState extends State<SightDetails> {
                 Row(
                   children: [
                     SightDetailsButton(
-                      label: AppLocalizations.of(context)!.plain,
-                      imagePath: 'assets/images/calendar.png',
+                      label: applocale.plain,
+                      onTap: () => _onButtonTap(buttonName: applocale.plain),
+                      imagePath: Assets.imagesCalendar,
                     ),
                     SightDetailsButton(
-                      label: AppLocalizations.of(context)!.toFav,
-                      imagePath: 'assets/images/heart.png',
+                      onTap: () => _onButtonTap(buttonName: applocale.toFav),
+                      label: applocale.toFav,
+                      imagePath: Assets.imagesHeart,
                     ),
                   ],
                 )
@@ -148,6 +151,14 @@ class _SightDetailsState extends State<SightDetails> {
         ],
       ),
     );
+  }
+
+  void _onButtonTap({required String buttonName}) {
+    debugPrint('Нажата кнопка "$buttonName"');
+  }
+
+  void _createRoute() {
+    debugPrint('Нажата кнопка построения маршрута');
   }
 }
 
@@ -181,7 +192,7 @@ class SightDetailsButton extends StatelessWidget {
               ),
               Text(
                 label,
-                style: AppTypography.headline4,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
           ),

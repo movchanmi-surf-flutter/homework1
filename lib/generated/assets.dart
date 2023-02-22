@@ -2,6 +2,13 @@
 class Assets {
   Assets._();
 
+  static const String filterCafe = 'assets/images/filter/cafe.svg';
+  static const String filterHotel = 'assets/images/filter/hotel.svg';
+  static const String filterMuseum = 'assets/images/filter/museum.svg';
+  static const String filterPark = 'assets/images/filter/park.svg';
+  static const String filterRestaurant = 'assets/images/filter/restaurant.svg';
+  static const String filterSpecialplace =
+      'assets/images/filter/specialplace.svg';
   static const String imagesCalendar = 'assets/images/calendar.svg';
   static const String imagesClear = 'assets/images/clear.svg';
   static const String imagesHeart = 'assets/images/heart.svg';
@@ -10,7 +17,6 @@ class Assets {
   static const String imagesRoute = 'assets/images/route.svg';
   static const String imagesSettings = 'assets/images/settings.svg';
   static const String imagesShare = 'assets/images/share.svg';
-  static const String robotoLICENSE = 'assets/fonts/Roboto/LICENSE.txt';
   static const String robotoRobotoBlack =
       'assets/fonts/Roboto/Roboto-Black.ttf';
   static const String robotoRobotoBlackItalic =
