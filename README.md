@@ -1,18 +1,7 @@
-# places
+# Places
 
-A new Flutter project.
+##Mobile application with a list of interesting places and attractions for traveling around the world.
 
-## Getting Started
+The application consists of 8 screens. Design layouts in Figma, server documentation in Swagger, description of requirements from the customer.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-# homework1
+Stack: Flutter SDK, Dart
